@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+*.sqlite3
+*.log
+
+# VSCode
+.vscode/
+
+# Alembic
+alembic/versions/*.pyc
