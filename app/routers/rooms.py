@@ -13,7 +13,7 @@ async def get_db() -> AsyncSession:
 @router.post('/rooms/', response_model=RoomRead)
 async def create_room(
         payload: RoomCreate,
-        db: AsyncSession = Depends(get_db)  # без скобок!
+        db: AsyncSession = Depends(get_db)
 ):
     return await RoomDAO.add(db, payload)
 

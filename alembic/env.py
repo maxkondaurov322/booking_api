@@ -2,18 +2,14 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from alembic import context
 
-# 👇 Импортируем Base и модели, чтобы Alembic знал о них
 from app.database import Base
-from app.models import rooms  # <-- ОБЯЗАТЕЛЕН, даже если не используешь явно
+from app.models import rooms
 
-# Получаем конфиг Alembic из alembic.ini
 config = context.config
 
-# Конфигурируем логгеры (если есть logging.ini)
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Указываем metadata проекта
 target_metadata = Base.metadata
 
 

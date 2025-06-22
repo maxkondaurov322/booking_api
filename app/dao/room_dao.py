@@ -6,7 +6,7 @@ from app.schemas.room_schemas import RoomCreate
 class RoomDAO:
     @staticmethod
     async def add(session: AsyncSession, data: RoomCreate) -> Rooms:
-        room = Rooms(**data.model_dump())  # создаём экземпляр
+        room = Rooms(**data.model_dump())
         session.add(room)
         await session.commit()
         await session.refresh(room)
@@ -24,11 +24,11 @@ class RoomDAO:
         result = await session.execute(
             select(Rooms).where(Rooms.id == room_id)
         )
-        room = result.scalar_one_or_none()   # ← SELECT всегда даёт строки
+        room = result.scalar_one_or_none()
 
-        if room is None:        # ничего не нашли
+        if room is None:
             return False
 
-        await session.delete(room)  # 2. удаляем найденный объект
+        await session.delete(room)
         await session.commit()
         return True
